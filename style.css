@@ -1,0 +1,267 @@
+/* EcoBee — renovación visual natural V1
+   Esta hoja de estilos solo cambia presentación; conserva la lógica del juego. */
+:root {
+  color-scheme: dark;
+  --forest-950: #10271d;
+  --forest-900: #173729;
+  --forest-800: #214b35;
+  --forest-700: #2f6844;
+  --leaf: #7fbd55;
+  --leaf-light: #b8dc7b;
+  --sun: #f6d76b;
+  --cream: #f5f2df;
+  --muted: #c1d1bd;
+  --glass: rgba(17, 43, 30, .94);
+  --line: rgba(190, 224, 157, .32);
+}
+
+* { box-sizing: border-box; }
+html { min-height: 100%; background: var(--forest-950); }
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: clamp(10px, 2.4vw, 28px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: var(--cream);
+  font-family: Inter, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background:
+    radial-gradient(ellipse at 12% 12%, rgba(125, 183, 79, .18), transparent 32%),
+    radial-gradient(ellipse at 88% 82%, rgba(64, 132, 76, .2), transparent 34%),
+    linear-gradient(145deg, #10251b 0%, #183b2a 48%, #0d2118 100%);
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .16;
+  background-image: radial-gradient(rgba(218, 239, 179, .38) .7px, transparent .7px);
+  background-size: 22px 22px;
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+
+#game-container {
+  position: relative;
+  isolation: isolate;
+  width: min(100%, 960px);
+  border-radius: 22px;
+  padding: 7px;
+  background: linear-gradient(135deg, rgba(190, 226, 141, .72), rgba(53, 105, 65, .55) 38%, rgba(19, 49, 34, .95));
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .36), 0 0 0 1px rgba(226, 241, 190, .13);
+}
+
+#game-container::before {
+  content: "🌿  ECOSISTEMA PROTEGIDO";
+  position: absolute;
+  z-index: 2;
+  top: -11px;
+  left: 22px;
+  padding: 5px 12px;
+  border: 1px solid rgba(194, 226, 156, .35);
+  border-radius: 999px;
+  background: #1d4b32;
+  color: #e4f4c8;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .13em;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .2);
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(224, 241, 188, .36);
+  border-radius: 16px;
+  background: #193a2b;
+  box-shadow: inset 0 0 30px rgba(5, 22, 13, .25);
+}
+
+.overlay-screen {
+  position: absolute;
+  inset: 7px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: clamp(14px, 3.5vw, 32px);
+  overflow: auto;
+  text-align: center;
+  border: 1px solid rgba(211, 237, 175, .25);
+  border-radius: 16px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(105, 160, 76, .2), transparent 55%),
+    linear-gradient(145deg, rgba(13, 37, 25, .97), rgba(19, 54, 35, .96));
+  backdrop-filter: blur(8px);
+}
+
+h1 {
+  max-width: 700px;
+  margin: 0;
+  color: #e8f5c9;
+  font-size: clamp(23px, 4vw, 38px);
+  line-height: 1.15;
+  letter-spacing: -.035em;
+  text-wrap: balance;
+  text-shadow: 0 3px 24px rgba(142, 197, 86, .24);
+}
+
+.subtitle {
+  max-width: 520px;
+  margin: 2px 0 8px;
+  color: #c5d9bd;
+  font-size: clamp(12px, 1.8vw, 15px);
+  line-height: 1.5;
+}
+
+.menu-section {
+  width: min(100%, 500px);
+  margin: 4px 0;
+  padding: 15px 18px 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(43, 82, 52, .72), rgba(20, 49, 33, .85));
+  box-shadow: inset 0 1px 0 rgba(245, 255, 219, .06), 0 10px 28px rgba(0, 0, 0, .12);
+}
+
+.menu-section h3 {
+  margin: 0 0 12px;
+  color: var(--leaf-light);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+button {
+  font: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+.mode-btn, .action-btn, .debug-btn {
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 750;
+  transition: transform .18s ease, background-color .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+
+.mode-btn {
+  min-height: 43px;
+  margin: 4px;
+  padding: 10px 15px;
+  border-color: rgba(205, 229, 178, .25);
+  border-radius: 11px;
+  color: #e8f2df;
+  background: rgba(9, 31, 20, .64);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
+}
+.mode-btn:hover { background: rgba(90, 137, 69, .4); border-color: rgba(204, 232, 164, .55); }
+.mode-btn.selected {
+  color: #142a19;
+  border-color: #d9edaa;
+  background: linear-gradient(135deg, #c7e78b, #8fc75e);
+  box-shadow: 0 4px 14px rgba(119, 177, 75, .2), inset 0 1px 0 rgba(255, 255, 255, .42);
+}
+
+.action-btn {
+  min-height: 48px;
+  margin-top: 3px;
+  padding: 12px 28px;
+  border-color: rgba(226, 246, 184, .48);
+  border-radius: 13px;
+  color: #112719;
+  font-size: 16px;
+  background: linear-gradient(135deg, #d4ec91, #91c75b 70%, #78b64b);
+  box-shadow: 0 7px 0 #356c3e, 0 12px 26px rgba(0, 0, 0, .25), inset 0 1px 0 rgba(255, 255, 255, .48);
+}
+.action-btn:hover { transform: translateY(-2px); box-shadow: 0 9px 0 #356c3e, 0 15px 30px rgba(0, 0, 0, .28); }
+.action-btn:active { transform: translateY(4px); box-shadow: 0 3px 0 #356c3e, 0 6px 15px rgba(0, 0, 0, .2); }
+
+#highscore-display {
+  margin: 4px 0 2px;
+  padding: 8px 14px;
+  border: 1px solid rgba(246, 215, 107, .36);
+  border-radius: 999px;
+  color: #f9e9a4;
+  background: rgba(93, 78, 28, .25);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.controls {
+  margin: 7px 0 0;
+  color: #b5cbb0;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+#ui {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: min(100%, 960px);
+  padding: 14px 18px;
+  border: 1px solid rgba(188, 222, 154, .25);
+  border-radius: 16px;
+  background: linear-gradient(120deg, rgba(31, 69, 45, .95), rgba(17, 43, 30, .96));
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .18), inset 0 1px 0 rgba(255, 255, 255, .035);
+}
+
+#ui > div { min-width: 0; text-align: left; }
+#ui h2 { margin: 0 0 4px; color: #e6f3cd; font-size: clamp(13px, 2vw, 17px); line-height: 1.35; }
+#ui p { margin: 0; color: #bfd3b7; font-size: 12px; line-height: 1.5; }
+
+.debug-btn {
+  flex: 0 0 auto;
+  min-height: 38px;
+  padding: 9px 13px;
+  border-color: rgba(246, 215, 107, .35);
+  border-radius: 10px;
+  color: #f9eab0;
+  background: rgba(105, 91, 39, .34);
+  font-size: 11px;
+}
+.debug-btn:hover { background: rgba(131, 113, 43, .55); border-color: rgba(246, 215, 107, .65); }
+button:focus-visible { outline: 3px solid #f6d76b; outline-offset: 3px; }
+
+@media (max-width: 600px) {
+  body { justify-content: flex-start; padding: 18px 8px 12px; gap: 10px; }
+  #game-container { padding: 4px; border-radius: 15px; }
+  #game-container::before { top: -9px; left: 13px; font-size: 8px; }
+  canvas { border-radius: 11px; }
+  .overlay-screen { inset: 4px; gap: 5px; padding: 10px; border-radius: 11px; }
+  h1 { font-size: clamp(17px, 4.5vw, 25px); }
+  .subtitle { max-width: 360px; margin: 0 0 4px; font-size: 11px; }
+  .menu-section { width: min(100%, 400px); padding: 8px 10px; border-radius: 11px; }
+  .menu-section h3 { margin-bottom: 5px; font-size: 10px; }
+  .mode-btn { min-height: 34px; width: min(100%, 300px); margin: 2px; padding: 7px 9px; border-radius: 8px; font-size: 11px; }
+  .action-btn { min-height: 38px; padding: 9px 19px; font-size: 13px; border-radius: 10px; box-shadow: 0 4px 0 #356c3e, 0 7px 15px rgba(0,0,0,.2); }
+  #highscore-display { margin: 1px 0; padding: 5px 10px; font-size: 10px; }
+  .controls { margin-top: 3px; font-size: 9px; }
+  #ui { padding: 11px 12px; border-radius: 12px; gap: 9px; }
+  #ui p { font-size: 11px; }
+  .debug-btn { min-height: 34px; padding: 7px 9px; font-size: 10px; }
+}
+
+@media (max-width: 380px) {
+  .overlay-screen { gap: 3px; padding: 7px; }
+  h1 { font-size: 17px; }
+  .subtitle { font-size: 10px; }
+  .menu-section { padding: 6px 8px; }
+  .mode-btn { min-height: 30px; padding: 5px; }
+  .controls { display: none; }
+  #ui { align-items: stretch; flex-direction: column; }
+  .debug-btn { align-self: flex-start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01ms !important; }
+}

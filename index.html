@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoBee: La Guardiana del Colmenar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="game-container">
+    <div id="menu-screen" class="overlay-screen">
+      <h1>🐝 EcoBee: La Guardiana del Colmenar</h1>
+      <p class="subtitle">Protege la biodiversidad y recolecta polen en equipo o solo.</p>
+      <div class="menu-section">
+        <h3>Modo de Juego</h3>
+        <button class="mode-btn selected" id="btn-single" onclick="seleccionarModo(1)">👤 1 Jugador</button>
+        <button class="mode-btn" id="btn-coop" onclick="seleccionarModo(2)">👥 2 Jugadores (Cooperativo)</button>
+      </div>
+      <div id="highscore-display">🏆 Récord de Polen: 0</div>
+      <button class="action-btn" onclick="iniciarJuegoDesdeMenu()">¡A Jugar!</button>
+      <p class="controls">P1: Flechas · P2: W A S D · ESC: Pausa</p>
+    </div>
+
+    <div id="pause-screen" class="overlay-screen" style="display:none;">
+      <h1>⏸️ JUEGO PAUSADO</h1>
+      <p class="subtitle">Tómate un respiro, el colmenar está a salvo por ahora.</p>
+      <button class="action-btn" onclick="togglePausa()">Continuar Partida</button>
+    </div>
+
+    <canvas id="gameCanvas" width="800" height="450"></canvas>
+  </div>
+
+  <div id="ui">
+    <div>
+      <h2 id="phase-title">Menú Principal</h2>
+      <p id="info">Selecciona un modo y pulsa «¡A Jugar!».</p>
+    </div>
+    <button class="debug-btn" onclick="siguienteNivelDebug()">⏩ Saltar Nivel</button>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

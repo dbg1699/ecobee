@@ -1,0 +1,25 @@
+EcoBee Natural V2.9 — ESCENARIO MÁS REALISTA
+
+Base: V2.8.1 — Personajes Más Visibles (última versión validada por el usuario).
+
+OBJETIVO
+Dar una mejora visible al fondo: montañas con facetas suaves y laderas, árboles con copas de volumen, troncos con vetas y sombras de contacto.
+
+CAMBIOS
+- Montañas: laderas curvas, facetas de luz/sombra y bruma de profundidad.
+- Árboles: follaje con gradientes radiales, bordes iluminados, hojas pequeñas y troncos con textura.
+- Los cambios son decorativos y se limitan al dibujo del escenario.
+
+CONSERVACIÓN
+Se parte de V2.8.1 para conservar los personajes mejorados, luciérnagas, sombras, iluminación, fondo/profundidad, agua y fauna decorativa. No se modifican intencionalmente controles, colisiones, velocidad, daño, enemigos, misiones, puntuación ni progresión.
+
+ARCHIVOS
+- abejas.html
+- style.css
+- script.js
+- LEEME.txt
+
+PRUEBA
+Extraer en una carpeta nueva y abrir abejas.html. Revisar árboles y montañas en distintos niveles; comprobar que los efectos ambientales sigan visibles y probar controles y recolección de polen.
+
+Estado: pendiente de validación visual y funcional del usuario.
